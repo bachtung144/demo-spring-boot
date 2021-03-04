@@ -10,16 +10,16 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
     private long id;
 
-    @Column
+    @Column(name = "createdBy")
     private String createdBy;
 
-    @Column
+    @Column(name = "createdDate")
     private Date createdDate;
 
-    @Column
+    @Column(name = "modifiedBy")
     private String modifiedBy;
 
-    @Column
+    @Column(name = "modifiedDate")
     private Date modifiedDate;
 
     public long getId() {

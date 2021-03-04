@@ -1,11 +1,9 @@
 package com.laptrinhjavaweb.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "news")
+@Table(name = "new")
 public class NewEntity extends BaseEntity{
 
     @Column
@@ -14,11 +12,15 @@ public class NewEntity extends BaseEntity{
     @Column
     private String thumbnail;
 
-    @Column
+    @Column(name = "shortDescription")
     private String shortDescription;
 
     @Column
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private CategoryEntity category;
 
     public String getTitle() {
         return title;
@@ -50,6 +52,14 @@ public class NewEntity extends BaseEntity{
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
     }
 
 }

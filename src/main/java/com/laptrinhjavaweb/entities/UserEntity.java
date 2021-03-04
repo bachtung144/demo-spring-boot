@@ -1,21 +1,35 @@
 package com.laptrinhjavaweb.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "User")
 public class UserEntity extends BaseEntity{
 
-    @Column
+    @Column(name = "username")
     private String userName;
 
     @Column
     private String password;
 
-    @Column
+    @Column(name = "fullname")
     private String fullName;
+
+    @ManyToMany
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<RoleEntity> roles = new ArrayList<>();
+
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
+    }
 
     @Column
     private Integer status;
