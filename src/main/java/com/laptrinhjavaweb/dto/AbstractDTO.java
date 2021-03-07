@@ -1,30 +1,34 @@
-package com.laptrinhjavaweb.entities;
+package com.laptrinhjavaweb.dto;
 
-import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@MappedSuperclass
-public abstract class BaseEntity {
-
-    @Id // not null + primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
+public class AbstractDTO <T>{
     private Long id;
+    private String createdBy;
+    private Date createdDate;
+    private String modifiedBy;
+    private Date modifiedDate;
+    private List<T> listResult = new ArrayList<>();
+
+
+
+    public List<T> getListResult() {
+        return listResult;
+    }
+
+    public void setListResult(List<T> listResult) {
+        this.listResult = listResult;
+    }
 
     public Long getId() {
         return id;
     }
 
-    @Column(name = "createdBy")
-    private String createdBy;
-
-    @Column(name = "createdDate")
-    private Date createdDate;
-
-    @Column(name = "modifiedBy")
-    private String modifiedBy;
-
-    @Column(name = "modifiedDate")
-    private Date modifiedDate;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getCreatedBy() {
         return createdBy;
